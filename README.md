@@ -1,34 +1,50 @@
-# Indicator Basis Demo
+# AWS MQTT Connection Issues and Sensor Reading Problem
 
-This demo mainly implements time, sensor data display, and some configuration functions.
+Hi... I am encountered with a error while connecting an ESP32 device to the AWS IoT MQTT broker and reading sensor values. The primary issues encountered are outlined below:
 
-<figure class="third">
-    <img src="./docs/page1.png" width="480"/> <img src="./docs/page2.png" width="480"/>
-    <img src="./docs/page3.png" width="480"/> <img src="./docs/page4.png" width="480"/>
-</figure>
+1. mbedtls_ssl_setup returned -0x7F00:
 
-## Function
-- [x] Time display.
-- [x] CO2, tVOC, Temperature and Humidity data real-time display.
-- [x] CO2, tVOC, Temperature and Humidity history data display.
-- [x] Wifi config.
-- [x] Display config.
-- [x] time config.
+```
+E (47613) esp-tls-mbedtls: mbedtls_ssl_setup returned -0x7F00
+E (47613) esp-tls: create_ssl_handle failed
+E (47613) esp-tls: Failed to open new connection
+E (47618) city: Connection failed...
+```
+
+2. Default value subscription:
+ There is an issue with subscribing to the correct topics or reading the actual sensor values.
+
+```
+I (46805) aws_iot: Subscribe callback Test: test_topic/esp32    Temperature : 179.0, Humidity : 180.0
+I (46908) aws_iot: Subscribe callback Test: test_topic/esp32    Temperature : 179.0, Humidity : 180.0
+```
+
+# Structure :
+
+1. Add your AWS IoT core - certificates:
+> AmazonRootCA1
+
+> private.key
+
+> device_cert.pem
+
+To the 
+>/main/certs 
+
+folder and replace the values
+
+2. In the menuconfig -> config the aws endpoint to your personal endpoint.
+
+3. Build and flash the project.
 
 
-## How to use example
+# Additional Resources
 
-Please first read the [User Guide](https://wiki.seeedstudio.com/SenseCAP_Indicator_Get_Started) of the SenseCAP Indicator Board to learn about its software and hardware information.
+[AWS IoT MQTT](https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html#mqtt-sdk)
+
+[ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/v5.2/esp32s3/get-started/index.html)
 
 
-### Build and Flash
+# Using the example of [SeeedStudio](https://github.com/Seeed-Solution/SenseCAP_Indicator_ESP32.git)
 
-1. The project configure PSRAM with Octal 120M by default. please see [here](../../tools/patch/README.md#idf-patch) to enable `PSRAM Octal 120M` feature.
-2. Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
-
-(To exit the serial monitor, type ``Ctrl-]``.)
-
-See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
-"# SeedStudio-indicator_basis_aws_mqtt" 
-"# SeedStudio-indicator_basis_aws_mqtt" 
-"# SeedStudio-indicator_basis_aws_mqtt" 
+> examples/indicator_basis
