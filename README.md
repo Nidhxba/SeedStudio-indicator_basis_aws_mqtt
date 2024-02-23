@@ -48,3 +48,6 @@ folder and replace the values
 # Using the example of [SeeedStudio](https://github.com/Seeed-Solution/SenseCAP_Indicator_ESP32.git)
 
 > examples/indicator_basis
+
+
+# Connect with me on disocrd - [dingan6537](https://discordapp.com/users/756011395174105168)
