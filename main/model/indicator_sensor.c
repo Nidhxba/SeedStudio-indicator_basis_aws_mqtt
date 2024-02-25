@@ -49,9 +49,6 @@ enum  pkt_type {
     //todo
 };
 
-float getco2() {return PKT_TYPE_SCD41_CO2;}
-float gettVOC() {return PKT_TYPE_TVOC_INDEX;}
-
 
 struct sensor_present_data
 {
