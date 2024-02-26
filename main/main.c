@@ -64,7 +64,7 @@ void app_main(void)
     lv_port_sem_give();
 
     indicator_model_init();
-    indicator_controller_init(&wifi_application_connected_events);
+    indicator_controller_init();
 
 
 
