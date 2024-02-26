@@ -19,6 +19,22 @@ I (46805) aws_iot: Subscribe callback Test: test_topic/esp32    Temperature : 17
 I (46908) aws_iot: Subscribe callback Test: test_topic/esp32    Temperature : 179.0, Humidity : 180.0
 ```
 
+## Brief:
+
+> main/model/indicator_sensor.c
+
+The sensor data is received as _**packet serial**_ and in line **_625_** data parsing and handling is is configured.
+The data need to be declared as a function, so, we can call that to the 
+
+> main/model/indicator_sensor.h
+
+file, and in the 
+
+> main/model/aws_iot.c
+
+file, add the function name in line _**203**_ and subscribe to the mqtt.
+
+
 # Structure :
 
 1. Add your AWS IoT core - certificates:
@@ -31,7 +47,7 @@ I (46908) aws_iot: Subscribe callback Test: test_topic/esp32    Temperature : 17
 To the 
 >/main/certs 
 
-folder and replace the values
+folder and replace the values **(NOTE :- Do not change the file name, just change the value)**
 
 2. In the menuconfig -> config the aws endpoint to your personal endpoint.
 
@@ -45,9 +61,14 @@ folder and replace the values
 [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/v5.2/esp32s3/get-started/index.html)
 
 
-# Using the example of [SeeedStudio](https://github.com/Seeed-Solution/SenseCAP_Indicator_ESP32.git)
-
+# Using the example of 
+[SeeedStudio](https://github.com/Seeed-Solution/SenseCAP_Indicator_ESP32.git)
 > examples/indicator_basis
+> 
+and 
+
+[MQTT](https://github.com/kevinudemy/udemy_esp32/tree/master)
+> 
 
 
 # Connect with me on disocrd - [dingan6537](https://discordapp.com/users/756011395174105168)
